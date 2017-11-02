@@ -3,32 +3,36 @@
 #include <LiquidCrystal_I2C.h>
 
 //Configuração do LCD
-LiquidCrystal_I2C lcd(0x3f,2,1,0,4,5,6,7,3, POSITIVE);
+LiquidCrystal_I2C lcd(0x3f,2,1,0,4,5,6,7,3, POSITIVE); //(SDL, SDA) = (A4, A5) como padrao. 
 
 //Configuração da biblioteca do DS3231
-DS3231 Clock(A1, A2);
+DS3231 Clock(A1, A2); //(SDL, SDA) 
 
 
 
 void setup() {
   // Iniciar o Interface I2C 
   Clock.begin();
+  //Funcoes de Ajustes
 //Clock.setDOW(WEDNESDAY); // Set Day-of-Week to SUNDAY
-Clock.setTime(00, 03, 0); // Set the time to 12:00:00 (24hr format)
+//Clock.setTime(00, 03, 0); // Set the time to 12:00:00 (24hr format)
 //Clock.setDate(1, 11, 2017); // Set the date to January 1st, 2014
 
   // Iniciar o serial
   Serial.begin(115200);
 
-        //Iniciar o LCD
-        lcd.begin(16, 2); 
-        lcd.setBacklight(HIGH);
+  //Iniciar o LCD
+  lcd.begin(16, 2);
+  //Liga Led
+  lcd.setBacklight(HIGH);
+  //Desliga o Led
+  lcd.setBacklight(LOW);
         
 
  
 }
-void loop() //Função do DS3231
-{
+void loop(){
+  
   //Joga as variaveis na Serial
   // Send Day-of-Week
 Serial.print(Clock.getDOWStr());
