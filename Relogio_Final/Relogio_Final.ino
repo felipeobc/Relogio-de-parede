@@ -3,10 +3,10 @@
 #include <LiquidCrystal_I2C.h>
 
 //Configuração do LCD
-LiquidCrystal_I2C lcd(0x3f,2,1,0,4,5,6,7,3, POSITIVE); //(SDL, SDA) = (A4, A5) como padrao. 
+LiquidCrystal_I2C lcd(0x3f,2,1,0,4,5,6,7,3, POSITIVE); //(SCL SDA) = (A4, A5) como padrao. 
 
 //Configuração da biblioteca do DS3231
-DS3231 Clock(A1, A2); //(SDL, SDA) 
+DS3231 Clock(A4, A5); //(SCL SDA) 
 
 
 
@@ -26,7 +26,7 @@ void setup() {
   //Liga Led
   lcd.setBacklight(HIGH);
   //Desliga o Led
-  lcd.setBacklight(LOW);
+  //lcd.setBacklight(LOW);
         
 
  
